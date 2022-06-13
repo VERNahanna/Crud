@@ -1,0 +1,19 @@
+.table>:not(caption)>*>* {
+    padding: .5rem .5rem;
+    background-color: #ac1c1c;
+}
+
+tr.headercell {
+    background-color: #115775;
+    color: #ffffff;
+}
+
+tr>th {
+    font-weight: 400;
+    padding: 1.6rem;
+    font-size: 1.4rem;
+}
+
+td {
+    padding: 2rem;
+}

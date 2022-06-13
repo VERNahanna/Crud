@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: 'segoe ui';
+}
+
+.navbackground {
+    height: 100px;
+    width: 100%;
+    background-color: #ffffff;
+    position: relative;
+    padding: 20px 55px;
+    margin-bottom: 9vh;
+    box-shadow: 10px 10px 10px -2px #ccc;
+}
+
+.nav {
+    background-image: url('../../../assets/img/header-splash-bg.png');
+    background-size: contain;
+}
+
+.nav>.nav-header {
+    display: inline;
+    background-image: url('../../../assets/img/header-splash-bg.png');
+}
+
+.nav>.nav-header>.nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav>.nav-btn {
+    display: none;
+}
+
+.nav>.nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+    margin-left: 35vw;
+}
+
+.nav>.nav-links>a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #2a2b2c;
+}
+
+.nav .nav-links a.active {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #0d5297;
+}
+
+// .nav>.nav-links>a:hover {
+//     background-color: rgba(0, 0, 0, 0.3);
+//     border-bottom: 2px solid rgb(15, 92, 121);
+// }
+a:hover {
+    color: #95a5a6;
+}
+
+.nav>.nav-links>a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    content: "";
+    display: block;
+    width: 45px;
+    padding-top: 3px;
+    border-bottom: 2px solid #1666a3;
+}
+
+.nav>#nav-check {
+    display: none;
+}
+
+@media (max-width:600px) {
+    .nav>.nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 14px;
+        top: 24px;
+    }
+    .nav>.nav-btn>label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    .nav>.nav-btn>label:hover,
+    .nav #nav-check:checked~.nav-btn>label {
+        background-color: rgba(14, 82, 131, 0.611);
+        color: #ffffff;
+    }
+    .nav>.nav-btn>label>span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid rgb(19, 77, 100);
+    }
+    .nav>.nav-links {
+        position: absolute;
+        display: block;
+        width: 50%;
+        background-color: rgb(255, 255, 255);
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+    .nav>.nav-links>a {
+        display: block;
+        width: 100%;
+    }
+    .nav>#nav-check:not(:checked)~.nav-links {
+        height: 0px;
+    }
+    .nav>#nav-check:checked~.nav-links {
+        height: calc(80vh - 50px);
+        overflow-y: auto;
+    }
+}
