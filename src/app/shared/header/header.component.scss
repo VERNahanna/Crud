@@ -18,14 +18,8 @@ body {
     box-shadow: 10px 10px 10px -2px #ccc;
 }
 
-.nav {
-    background-image: url('../../../assets/img/header-splash-bg.png');
-    background-size: contain;
-}
-
 .nav>.nav-header {
     display: inline;
-    background-image: url('../../../assets/img/header-splash-bg.png');
 }
 
 .nav>.nav-header>.nav-title {
@@ -125,7 +119,18 @@ a:hover {
         height: 0px;
     }
     .nav>#nav-check:checked~.nav-links {
-        height: calc(80vh - 50px);
+        height: calc(60vh - 50px);
         overflow-y: auto;
+        text-align: center;
+    }
+    .nav>.nav-links>a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+        content: "";
+        display: block;
+        width: 72px;
+        margin-left: 53px;
+        padding-top: 3px;
+        border-bottom: 2px solid #1666a3;
     }
 }
