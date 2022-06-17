@@ -8,7 +8,6 @@ import { ViewComponent } from './post/view/view.component';
 const routes: Routes = [
   { path: 'post', redirectTo: 'post/index', pathMatch: 'full'},
   { path: '', component: IndexComponent },
-  { path: 'post/:postId/view', component: ViewComponent },
 
 ];
 
