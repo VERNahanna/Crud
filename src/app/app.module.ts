@@ -5,21 +5,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { PostModule } from './post/post.module';
+import { CategoryModule } from './post/category.module'
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+
+
   ],
   imports: [
+    MatToolbarModule,
     BrowserModule,
     AppRoutingModule,
-    PostModule,
+    CategoryModule,
     HttpClientModule,
     BrowserAnimationsModule,
 

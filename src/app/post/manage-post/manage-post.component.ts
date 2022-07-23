@@ -20,8 +20,8 @@ export class ManagePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      name: new FormControl('', [Validators.required]),
+      // lobSpaceTypeId: new FormControl('1'),
     });
   }
 

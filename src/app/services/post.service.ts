@@ -4,14 +4,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Post } from '../models/post';
+import { Categories, FAQ, Icategories, ICategoriesViewModel, IFAQViewModel} from '../models/Category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  // private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = "https:/mocawebsitebackend.techno-politan.xyz/api/v1/";
+
+
+  private CategoryWithFAQ = "https:/mocawebsitebackend.techno-politan.xyz/api/v1/Faqs";
+
+
+
 
   /*------------------------------------------
   --------------------------------------------
@@ -36,23 +43,19 @@ export class PostService {
    *
    * @return response()
    */
-  getAll(): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/posts/')
+  getAll(): Observable<ICategoriesViewModel> {
+
+    return this.httpClient.get<ICategoriesViewModel>(this.apiURL + '/Categories')
 
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  create(post:Post): Observable<any> {
+  create(post:Categories): Observable<any> {
 
-    return this.httpClient.post(this.apiURL + '/posts/', JSON.stringify(post), this.httpOptions)
+    return this.httpClient.post(this.apiURL + '/Categories/', JSON.stringify(post), this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)
@@ -62,7 +65,7 @@ export class PostService {
 
   find(id:number): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/posts/' + id)
+    return this.httpClient.get(this.apiURL + 'Categories/' + id + '?LobSpaceTypeId=1')
 
     .pipe(
       catchError(this.errorHandler)
@@ -70,9 +73,17 @@ export class PostService {
   }
 
 
-  update(id:number, post:Post): Observable<any> {
+  update(post:Categories): Observable<any> {
+    return this.httpClient.put<any>(`${this.apiURL}/Categories/${post.id}`, post, this.httpOptions)
 
-    return this.httpClient.put(this.apiURL + '/posts/' + id, JSON.stringify(post), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+
+  delete(id:number):Observable<{}>{
+    return this.httpClient.delete<{}>(this.apiURL + '/categories/' + id, this.httpOptions)
 
     .pipe(
       catchError(this.errorHandler)
@@ -80,13 +91,61 @@ export class PostService {
   }
 
 
-  delete(id:number){
-    return this.httpClient.delete(this.apiURL + '/posts/' + id, this.httpOptions)
+/*===================================================================*/
+getAllFAQ(categoryId: number): Observable<IFAQViewModel> {
 
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
+  return this.httpClient.get<IFAQViewModel>(this.CategoryWithFAQ + `/Category/${categoryId}`)
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+
+/**
+ * Write code on Method
+ *
+ * @return response()
+ */
+// /api/v{version}/Faqs/Category/{categoryId}
+createFAQ(faq:FAQ): Observable<any> {
+
+  return this.httpClient.post(this.CategoryWithFAQ + `/Category/${faq.categoryId}`, faq, this.httpOptions)
+
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+
+
+findFAQ(id:number): Observable<any> {
+
+  return this.httpClient.get(this.CategoryWithFAQ + 'Categories/' + id + '?LobSpaceTypeId=1')
+
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+
+
+updateFAQ(post:Icategories): Observable<any> {
+  return this.httpClient.put<any>(`${this.CategoryWithFAQ}/Category/{categoryId}${post.id}`, post, this.httpOptions)
+
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+
+
+deleteFAQ(id:number):Observable<{}>{
+  return this.httpClient.delete<{}>(`${this.CategoryWithFAQ}/Category/{categoryId}${id}`, this.httpOptions)
+
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
+/*===================================================================*/
+
+
+
 
 
   errorHandler(error:any) {

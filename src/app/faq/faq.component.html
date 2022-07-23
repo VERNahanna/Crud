@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-xs-9"></div>
+        <div class="col-md-3 col-xs-9">
+            <a href="javascript: void(0)" class="btn btn-primary" [routerLink]="['/']">Add Category</a>
+            <a href="javascript: void(0)" class="btn btn-primary" (click)="create()">Add FAQ</a>
+        </div>
+    </div>
+    <!-- <div *ngFor="let rec of categories">
+        <h2>Id: {{rec.id}}</h2>
+        <h4>Name: {{rec.name}}
+            Pass: {{rec.faqs.question}} Verified: {{rec.faqs.answer}}
+        </h4>
+    </div> -->
+
+    <mat-form-field class="full-width">
+        <mat-label>Name </mat-label>
+        <mat-select [(ngModel)]="selectedCategoryId" (selectionChange)="onCatgoryChaneged($event)">
+            <mat-option *ngFor="let row of categories" [value]="row.id">{{ row.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <div class="container">
+
+        <ng-container *ngFor="let item of faqs">
+            {{item.question | json}} {{item.answer | json}}
+        </ng-container>
+
+        <mat-accordion cdkDropList #unassignedList="cdkDropList" [cdkDropListData]="categories" (cdkDropListDropped)="drop($event)">
+            <mat-expansion-panel cdkDrag *ngFor="let category of categories">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="title">
+                            {{category.name}}
+                        </div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <button type="button" (click)="deletePost(category.id)" class="btn delete ">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                        <button type="button" (click)="updateData(category)" class="btn ">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>
