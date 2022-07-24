@@ -23,7 +23,7 @@ export class FAQComponent implements OnInit {
   faqs: FAQ[] = [];
   expandedIndex = 0;
   selectedCategoryId = 0;
-
+  categoryId=0;
   constructor(
     public postService: PostService,
      public dialog: MatDialog,
@@ -38,11 +38,18 @@ export class FAQComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-
+    this.getallFQA(this.categoryId);
     this.getAllCategories();
 
   }
+getallFQA(categoryId:number):void{
+  this.postService.getAllFAQ(categoryId).subscribe((result: IFAQViewModel) => {
+    if (result.statusCode == 200) {
+      this.faqs = result.data;
+    }
+  })
 
+}
   onCatgoryChaneged(event:MatSelectChange): void {
     console.log('e', event.value);
     if (event.value) {
@@ -72,7 +79,7 @@ export class FAQComponent implements OnInit {
 
 
 
-  updateData(category: Categories): void {
+  updateData(category: FAQ): void {
     this.dialog.open(EditFAQComponent, {width: '700px', data: category}).afterClosed().subscribe((res: {fireRefresh: boolean}) => {
       if (res && res.fireRefresh) {
         this.getAllCategories();
@@ -87,6 +94,7 @@ export class FAQComponent implements OnInit {
    */
   deletePost(faqId:number){
     this.postService.deleteFAQ(faqId).subscribe(res => {
+
          this.faqs = this.faqs.filter(item => item.id !== faqId);
          console.log('Post deleted successfully!');
     })

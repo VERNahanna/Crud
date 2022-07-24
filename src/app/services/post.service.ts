@@ -116,7 +116,7 @@ createFAQ(faq:FAQ): Observable<any> {
 
 
 updateFAQ(faq:FAQ): Observable<any> {
-  return this.httpClient.put<any>(`${this.CategoryWithFAQ}/Category/{faqId}${faq.id}`, faq, this.httpOptions)
+  return this.httpClient.put<any>(`${this.CategoryWithFAQ}/{faqId}${faq.id}`, faq, this.httpOptions)
 
   .pipe(
     catchError(this.errorHandler)
@@ -124,8 +124,8 @@ updateFAQ(faq:FAQ): Observable<any> {
 }
 
 
-deleteFAQ(faqId:number):Observable<{}>{
-  return this.httpClient.delete<{}>(`${this.CategoryWithFAQ}/Category/1/${faqId}`, this.httpOptions)
+deleteFAQ(faqId:number):Observable<any>{
+  return this.httpClient.delete(`${this.CategoryWithFAQ}/${faqId}`, this.httpOptions)
   .pipe(
     catchError(this.errorHandler)
   )

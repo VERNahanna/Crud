@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Categories, FAQ } from 'src/app/models/Category';
+import { Categories, FAQ, ICategoriesViewModel } from 'src/app/models/Category';
 import { PostService } from 'src/app/services/post.service';
 
 
@@ -29,6 +29,7 @@ export class EditFAQComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
+    this.getAllCategories()
     this.initFormModel();
     this.patchFromValue();
 
@@ -38,7 +39,13 @@ export class EditFAQComponent implements OnInit {
   close(isUpdated: boolean): void {
     this.dialogRef.close({fireRefresh: isUpdated});
   }
-
+  private getAllCategories(): void {
+    this.postService.getAll().subscribe((result: ICategoriesViewModel) => {
+      if (result.statusCode == 200) {
+        this.categories = result.data;
+      }
+    })
+  }
   // onNoClick() {
   //   this.dialogRef.close();
   // }
@@ -75,7 +82,6 @@ export class EditFAQComponent implements OnInit {
         categoryId: this.data.categoryId,
         question:this.data.question,
         answer:this.data.answer,
-
       });
     }
   }

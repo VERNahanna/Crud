@@ -6,45 +6,36 @@
             <a href="javascript: void(0)" class="btn btn-primary" (click)="create()">Add FAQ</a>
         </div>
     </div>
+    <div>
+        <label class="center-block mr-3 pr-3">Category Name</label>
+        <mat-form-field class="full-width" id="select-category">
 
-    <mat-form-field class="full-width">
-        <mat-label>Name </mat-label>
-        <mat-select [(ngModel)]="selectedCategoryId" (selectionChange)="onCatgoryChaneged($event)">
-            <mat-option *ngFor="let row of categories" [value]="row.id">{{ row.name }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+            <mat-label>Category Name </mat-label>
+            <mat-select [(ngModel)]="selectedCategoryId" (selectionChange)="onCatgoryChaneged($event)">
+                <mat-option *ngFor="let row of categories" [value]="row.id">{{row.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 
 
     <div class="container">
-
-        <ng-container *ngFor="let item of faqs">
-            {{item.question | json}} {{item.answer | json}}
-        </ng-container>
-
-        <mat-accordion cdkDropList #unassignedList="cdkDropList" [cdkDropListData]="categories" (cdkDropListDropped)="drop($event)">
-            <mat-expansion-panel cdkDrag *ngFor="let category of categories">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <div class="title">
-                            {{category.name}}
-                        </div>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        <button type="button" (click)="deletePost(category.id)" class="btn delete ">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                        <button type="button" (click)="updateData(category)" class="btn ">
-                      <mat-icon>edit</mat-icon>
-                    </button>
-
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <ng-container *ngFor="let item of faqs">
-                    Question Is :{{item.question | json}} Answer Is: {{item.answer | json}}
-                </ng-container>
-            </mat-expansion-panel>
-        </mat-accordion>
+        <div class="Selection-qestion">
+            <ng-container *ngFor="let item of faqs">
+                <div class="question-bg">
+                    <span>Question :</span>{{item.question | json}}
+                </div>
+                <div class="answer-bg">
+                    <span>Answer :</span> {{item.answer | json}}
+                </div>
+                <button type="button" (click)="deletePost(item.id)" class="btn delete ">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <button type="button" (click)="updateData(item)" class="btn ">
+                  <mat-icon>edit</mat-icon>
+                </button>
+            </ng-container>
+        </div>
     </div>
 
 </div>

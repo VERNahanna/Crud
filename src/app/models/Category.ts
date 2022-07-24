@@ -25,7 +25,9 @@ export interface Icategories {
 
 export interface FAQ {
   id: number;
+  name: string;
   question:string;
   answer:string;
   categoryId: number;
+  faqId: number;
 }
