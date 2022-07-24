@@ -1,1 +1,40 @@
-<p>edit-faq works!</p>
+<h1 mat-dialog-title>
+    Edit FAQ
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div class="form-group ">
+            <mat-form-field class="full-width">
+                <mat-label>Name </mat-label>
+                <mat-select formControlName="categoryId">
+                    <mat-option *ngFor="let row of categories" [value]="row.id">{{ row.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group ">
+            <mat-form-field class="form-control">
+                <mat-label>question</mat-label>
+                <input matInput formControlName="question" type="text">
+                <mat-error *ngIf="form.controls['question'].hasError('required')">
+                    This field is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group ">
+            <mat-form-field class="form-control">
+                <mat-label>Answer</mat-label>
+                <input matInput formControlName="answer" type="text">
+                <mat-error *ngIf="form.controls['answer'].hasError('required')">
+                    This field is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="close(false)">No Thanks</button>
+    <button mat-raised-button color="primary" cdkFocusInitial [disabled]="!form.valid" (click)="updateCat()">Edit</button>
+</div>

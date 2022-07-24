@@ -17,10 +17,9 @@ id:number
   styleUrls: ['./edit-category.component.scss']
 })
 export class EditCategoryComponent implements OnInit {
- // @Input('data') data:any
+
   form!: FormGroup;
-  // id!: number;
-  // category!: Categories;
+
 
   constructor(public dialogRef: MatDialogRef<EditCategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Categories,
@@ -31,18 +30,7 @@ export class EditCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.initFormModel();
     this.patchFromValue();
-// console.log('TaDDDDDDDDDDDD',this.data)
-//     this.postService.find(this.data.id).subscribe((data: any)=>{
-//       console.log('CatTest',data)
-//       this.category = data;
-//         this.form = new FormGroup({
-//         name: new FormControl(data.data.name, [Validators.required]),
-//         lobSpaceTypeId: new FormControl('1'),
 
-
-//       });
-
-//     });
 
   }
 
@@ -50,10 +38,6 @@ export class EditCategoryComponent implements OnInit {
     this.dialogRef.close({fireRefresh: isUpdated});
   }
 
-  editCategory() {
-
-
-  }
 
   submit(): void {
     if (this.form.valid) {

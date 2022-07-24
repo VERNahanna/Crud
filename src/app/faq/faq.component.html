@@ -6,12 +6,6 @@
             <a href="javascript: void(0)" class="btn btn-primary" (click)="create()">Add FAQ</a>
         </div>
     </div>
-    <!-- <div *ngFor="let rec of categories">
-        <h2>Id: {{rec.id}}</h2>
-        <h4>Name: {{rec.name}}
-            Pass: {{rec.faqs.question}} Verified: {{rec.faqs.answer}}
-        </h4>
-    </div> -->
 
     <mat-form-field class="full-width">
         <mat-label>Name </mat-label>
@@ -46,7 +40,9 @@
 
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-
+                <ng-container *ngFor="let item of faqs">
+                    Question Is :{{item.question | json}} Answer Is: {{item.answer | json}}
+                </ng-container>
             </mat-expansion-panel>
         </mat-accordion>
     </div>

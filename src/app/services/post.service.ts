@@ -11,7 +11,6 @@ import { Categories, FAQ, Icategories, ICategoriesViewModel, IFAQViewModel} from
 })
 export class PostService {
 
-  // private apiURL = "https://jsonplaceholder.typicode.com";
   private apiURL = "https:/mocawebsitebackend.techno-politan.xyz/api/v1/";
 
 
@@ -43,7 +42,7 @@ export class PostService {
    *
    * @return response()
    */
-
+/******************Category Tab************************************************/
   getAll(): Observable<ICategoriesViewModel> {
 
     return this.httpClient.get<ICategoriesViewModel>(this.apiURL + '/Categories')
@@ -91,7 +90,7 @@ export class PostService {
   }
 
 
-/*===================================================================*/
+/*==============================FAQ=====================================*/
 getAllFAQ(categoryId: number): Observable<IFAQViewModel> {
 
   return this.httpClient.get<IFAQViewModel>(this.CategoryWithFAQ + `/Category/${categoryId}`)
@@ -116,18 +115,8 @@ createFAQ(faq:FAQ): Observable<any> {
 }
 
 
-findFAQ(id:number): Observable<any> {
-
-  return this.httpClient.get(this.CategoryWithFAQ + 'Categories/' + id + '?LobSpaceTypeId=1')
-
-  .pipe(
-    catchError(this.errorHandler)
-  )
-}
-
-
-updateFAQ(post:Icategories): Observable<any> {
-  return this.httpClient.put<any>(`${this.CategoryWithFAQ}/Category/{categoryId}${post.id}`, post, this.httpOptions)
+updateFAQ(faq:FAQ): Observable<any> {
+  return this.httpClient.put<any>(`${this.CategoryWithFAQ}/Category/{faqId}${faq.id}`, faq, this.httpOptions)
 
   .pipe(
     catchError(this.errorHandler)
@@ -135,9 +124,8 @@ updateFAQ(post:Icategories): Observable<any> {
 }
 
 
-deleteFAQ(id:number):Observable<{}>{
-  return this.httpClient.delete<{}>(`${this.CategoryWithFAQ}/Category/{categoryId}${id}`, this.httpOptions)
-
+deleteFAQ(faqId:number):Observable<{}>{
+  return this.httpClient.delete<{}>(`${this.CategoryWithFAQ}/Category/1/${faqId}`, this.httpOptions)
   .pipe(
     catchError(this.errorHandler)
   )

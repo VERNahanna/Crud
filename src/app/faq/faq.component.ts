@@ -43,7 +43,7 @@ export class FAQComponent implements OnInit {
 
   }
 
-  onCatgoryChaneged(event: MatSelectChange): void {
+  onCatgoryChaneged(event:MatSelectChange): void {
     console.log('e', event.value);
     if (event.value) {
       this.postService.getAllFAQ(event.value).subscribe(res =>{
@@ -85,9 +85,9 @@ export class FAQComponent implements OnInit {
    *
    * @return response()
    */
-  deletePost(id:number){
-    this.postService.deleteFAQ(id).subscribe(res => {
-         this.categories = this.categories.filter(item => item.id !== id);
+  deletePost(faqId:number){
+    this.postService.deleteFAQ(faqId).subscribe(res => {
+         this.faqs = this.faqs.filter(item => item.id !== faqId);
          console.log('Post deleted successfully!');
     })
   }
