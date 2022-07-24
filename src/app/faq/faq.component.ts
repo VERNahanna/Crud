@@ -100,7 +100,7 @@ getallFQA(categoryId:number):void{
     })
   }
 
-  drop(event: CdkDragDrop<Categories[]>) {
+  drop(event: CdkDragDrop<FAQ[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

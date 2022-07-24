@@ -16,26 +16,43 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-accordion cdkDropList #unassignedList="cdkDropList" [cdkDropListData]="faqs" (cdkDropListDropped)="drop($event)">
+            <mat-expansion-panel cdkDrag *ngFor="let item of faqs">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="title">
+                            <div class="Selection-qestion">
+                                <ng-container>
+                                    <div class="question-bg">
+                                        <span>Question :</span>{{item.question | json}}
+                                        <span>Answer :</span> {{item.answer | json}}
+                                    </div>
+
+
+                                </ng-container>
+                            </div>
+                        </div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <button type="button" (click)="deletePost(item.id)" class="btn delete ">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                        <button type="button" (click)="updateData(item)" class="btn ">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
     </div>
 
 
     <div class="container">
-        <div class="Selection-qestion">
-            <ng-container *ngFor="let item of faqs">
-                <div class="question-bg">
-                    <span>Question :</span>{{item.question | json}}
-                </div>
-                <div class="answer-bg">
-                    <span>Answer :</span> {{item.answer | json}}
-                </div>
-                <button type="button" (click)="deletePost(item.id)" class="btn delete ">
-                  <mat-icon>delete</mat-icon>
-                </button>
-                <button type="button" (click)="updateData(item)" class="btn ">
-                  <mat-icon>edit</mat-icon>
-                </button>
-            </ng-container>
-        </div>
+
     </div>
 
 </div>
